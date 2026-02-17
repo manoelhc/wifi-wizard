@@ -1,6 +1,6 @@
 use gtk4::prelude::*;
 use gtk4::{
-    Application, ApplicationWindow, Box, Button, CheckButton, Entry, Label, ListBox, 
+    Application, ApplicationWindow, Box, Button, Entry, Label, ListBox, 
     ListBoxRow, Orientation, ScrolledWindow, Stack, StackSwitcher,
 };
 use glib;

@@ -53,7 +53,7 @@ source $HOME/.cargo/env
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/manoelhc/wifi-wizard.git
+git clone <your-repository-url>
 cd wifi-wizard
 ```
 

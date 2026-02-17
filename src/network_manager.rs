@@ -77,7 +77,7 @@ impl NetworkManagerClient {
     }
 
     pub async fn scan_networks(&self) -> Result<Vec<WifiNetwork>> {
-        let nm_proxy = NetworkManagerProxyBlocking::new(&self.connection)
+        let nm_proxy = NetworkManagerProxy::new(&self.connection)
             .await
             .context("Failed to create NetworkManager proxy")?;
 
@@ -89,7 +89,7 @@ impl NetworkManagerClient {
         let mut networks = Vec::new();
 
         for device_path in devices {
-            let device_proxy = DeviceProxyBlocking::builder(&self.connection)
+            let device_proxy = DeviceProxy::builder(&self.connection)
                 .path(device_path.clone())
                 .context("Invalid device path")?
                 .build()
@@ -106,7 +106,7 @@ impl NetworkManagerClient {
                 continue;
             }
 
-            let wireless_proxy = WirelessDeviceProxyBlocking::builder(&self.connection)
+            let wireless_proxy = WirelessDeviceProxy::builder(&self.connection)
                 .path(device_path.clone())
                 .context("Invalid device path")?
                 .build()
@@ -127,7 +127,7 @@ impl NetworkManagerClient {
                 .context("Failed to get access points")?;
 
             for ap_path in access_points {
-                let ap_proxy = AccessPointProxyBlocking::builder(&self.connection)
+                let ap_proxy = AccessPointProxy::builder(&self.connection)
                     .path(ap_path.clone())
                     .context("Invalid access point path")?
                     .build()
@@ -172,7 +172,7 @@ impl NetworkManagerClient {
         password: Option<&str>,
         hidden: bool,
     ) -> Result<()> {
-        let nm_proxy = NetworkManagerProxyBlocking::new(&self.connection)
+        let nm_proxy = NetworkManagerProxy::new(&self.connection)
             .await
             .context("Failed to create NetworkManager proxy")?;
 
@@ -184,7 +184,7 @@ impl NetworkManagerClient {
         let mut wifi_device_path = None;
 
         for device_path in devices {
-            let device_proxy = DeviceProxyBlocking::builder(&self.connection)
+            let device_proxy = DeviceProxy::builder(&self.connection)
                 .path(device_path.clone())
                 .context("Invalid device path")?
                 .build()
