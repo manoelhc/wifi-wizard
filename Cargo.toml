@@ -1,0 +1,12 @@
+[package]
+name = "wifi-wizard"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gtk4 = "0.9"
+glib = "0.20"
+zbus = "4.0"
+tokio = { version = "1.35", features = ["rt-multi-thread", "macros"] }
+anyhow = "1.0"
+uuid = { version = "1.6", features = ["v4"] }
