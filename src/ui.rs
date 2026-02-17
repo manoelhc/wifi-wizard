@@ -246,10 +246,16 @@ fn create_hidden_network_view(nm_client: Rc<NetworkManagerClient>, window: Appli
     let window_clone = window.clone();
     
     connect_button.connect_clicked(move |button| {
-        let ssid = ssid_entry_clone.text().to_string();
+        let ssid = ssid_entry_clone.text().to_string().trim().to_string();
         
         if ssid.is_empty() {
             status_label_clone.set_text("Please enter a network name");
+            return;
+        }
+
+        // SSID length validation (WiFi standard: max 32 bytes)
+        if ssid.len() > 32 {
+            status_label_clone.set_text("Network name is too long (max 32 characters)");
             return;
         }
 
